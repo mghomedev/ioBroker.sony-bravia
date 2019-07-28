@@ -77,7 +77,8 @@
             }
         },
         "authors": [
-            "ldittmar <iobroker@lmdsoft.de>"
+            "ldittmar <iobroker@lmdsoft.de>",
+            "mghomedev <mghomedev@gmx.de>"
         ],
         "title": "Sony Bravia Smart-TV",
         "titleLang": {

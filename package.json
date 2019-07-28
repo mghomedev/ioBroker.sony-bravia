@@ -3,10 +3,10 @@
   "version": "1.0.1",
   "description": "ioBroker Sony Bravia Smart-TV Adapter",
   "author": {
-    "name": "ldittmar",
-    "email": "iobroker@lmdsoft.de"
+    "name": "mghomedev",
+    "email": "mghomedev@gmx.de"
   },
-  "homepage": "https://github.com/iobroker-community-adapters/ioBroker.sony-bravia",
+  "homepage": "https://github.com/mghomedev/ioBroker.sony-bravia",
   "license": "MIT",
   "keywords": [
     "sony",
@@ -15,7 +15,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/iobroker-community-adapters/ioBroker.sony-bravia"
+    "url": "https://github.com/mghomedev/ioBroker.sony-bravia"
   },
   "dependencies": {
     "node-ssdp": "^4.0.0",
@@ -34,7 +34,7 @@
     "test": "node node_modules/mocha/bin/mocha --exit"
   },
   "bugs": {
-    "url": "https://github.com/iobroker-community-adapters/ioBroker.sony-bravia/issues"
+    "url": "https://github.com/mghomedev/ioBroker.sony-braviaissues"
   },
   "readmeFilename": "README.md"
 }

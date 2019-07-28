@@ -3,6 +3,11 @@
   ioBroker.sony-bravia
 </h1>
 
+Fork URL:
+
+https://github.com/mghomedev/ioBroker.sony-bravia
+
+Original Source URLs:
 [![NPM version](http://img.shields.io/npm/v/iobroker.sony-bravia.svg)](https://www.npmjs.com/package/iobroker.sony-bravia)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.sony-bravia.svg)](https://www.npmjs.com/package/iobroker.sony-bravia)
 [![Dependency Status](https://img.shields.io/david/iobroker-community-adapters/iobroker.sony-bravia.svg)](https://david-dm.org/iobroker-community-adapters/iobroker.sony-bravia)
@@ -27,6 +32,9 @@ This is an ioBroker adapter for your Sony Bravia Smart-TV with Android OS. Teste
 
 ## Changelog
 
+#### 1.1.1 
+Fork by mghomedev with version number intentionally increased due to fork (mghomedev) 
+
 #### 1.0.1
 * (ldittmar) compact mode compatibility added
 * (ldittmar) add chinese support
@@ -46,7 +54,8 @@ This is an ioBroker adapter for your Sony Bravia Smart-TV with Android OS. Teste
 ## License
 The MIT License (MIT)
 
-Copyright (c) 2018 ldittmar <iobroker@lmdsoft.de>
+Copyright (c) 2018 ldittmar <iobroker@lmdsoft.de> (original author)
+Copyright (c) 2019-07-28 of updated parts in github-fork by mghomedev<mghomedev@gmx.de>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
