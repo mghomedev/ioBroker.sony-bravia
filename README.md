@@ -33,7 +33,10 @@ This is an ioBroker adapter for your Sony Bravia Smart-TV with Android OS. Teste
 ## Changelog
 
 #### 1.1.1 
-Fork by mghomedev with version number intentionally increased due to fork (mghomedev) 
+* (mghomedev) introduced new state info.powerstatus to poll the actual power/standby state from the TV
+* (mghomedev) introduce new state triggerUpdateStatus to trigger refresh of info.powerstatus 
+* (mghomedev) make connection state refresh interval configurable in the admin panel 
+- Fork by mghomedev with version number intentionally increased due to fork (mghomedev) 
 
 #### 1.0.1
 * (ldittmar) compact mode compatibility added
