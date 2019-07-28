@@ -124,7 +124,8 @@
     },
     "native": {
         "ip": "",
-        "psk": ""
+        "psk": "",
+        "syncseconds" : 60
     },
     "objects": [],
     "instanceObjects": [

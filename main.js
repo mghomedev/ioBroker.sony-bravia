@@ -47,7 +47,18 @@ function main() {
         adapter.subscribeStates('*');
         checkStatus();
 
-        setInterval(checkStatus, 60000);
+        let interval = 60000;
+        if (adapter.config.syncseconds!=null && Number(adapter.config.syncseconds)>=0) {
+
+            interval = Number(adapter.config.syncseconds) * 1000;
+        }
+    
+        if (interval>0) {
+            adapter.log.debug("Starting refresh timer(interval="+interval+" milli-seconds)");    
+            setInterval(checkStatus, interval);        
+        }else {
+            adapter.log.debug("Disabled refresh timer because interval="+interval);    
+        }
 
     } else {
         adapter.log.error("Please configure the Sony Bravia adapter");
