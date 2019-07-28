@@ -24,10 +24,10 @@
     "@iobroker/adapter-core": "^1.0.3"
   },
   "devDependencies": {
+    "axios": "^0.18.0",
+    "chai": "^4.2.0",
     "gulp": "^4.0.0",
-    "chai": "^4.1.2",
-    "mocha": "^6.0.2",
-    "axios": "^0.18.0"
+    "mocha": "^6.0.2"
   },
   "main": "main.js",
   "scripts": {

@@ -1,5 +1,9 @@
-/* jshint -W097 */// jshint strict:false
+
+/* 
+jshint -W097 */// jshint strict:false
 /*jslint node: true */
+//jshint esversion:6
+
 "use strict";
 
 // you have to require the utils module and call adapter function
