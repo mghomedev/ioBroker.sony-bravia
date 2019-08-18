@@ -43,7 +43,7 @@ function handleStateCommand(id, state) {
     adapter.log.debug("handleStateCommand called for id=" + id);
 
     if (id.endsWith("info.triggerUpdateStatus")) {
-        if (state.val != null && state.val) {
+        if (state.val != null && state.val && !state.ack) {
             setImmediate(() => {
                 checkStatus();
             });
@@ -52,7 +52,7 @@ function handleStateCommand(id, state) {
     } else if (id.endsWith("info.powerstatus")) {
         return; // ignored
     } else if (id.endsWith("triggerUpdateSpeakerAndVolumeStatus")) {
-        if (state.val != null && state.val) {
+        if (state.val != null && state.val && !state.ack) {
             setImmediate(() => {
                 refreshInputAndVolumeInformation();
             });
