@@ -178,6 +178,14 @@
             "native": {}
         },
         {
+            "_id": "audio",
+            "type": "channel",
+            "common": {
+                "name": "Audio / Speaker / Volume"
+            },
+            "native": {}
+        },
+        {
             "_id": "info.connection",
             "type": "state",
             "common": {
@@ -210,6 +218,103 @@
                 "type": "boolean",
                 "read": false,
                 "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "audio.triggerUpdateSpeakerAndVolumeStatus",
+            "type": "state",
+            "common": {
+                "role": "button",
+                "name": "Trigger refresh of speaker and volume information from TV",
+                "type": "boolean",
+                "read": false,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "audio.volumeSpeaker",
+            "type": "state",
+            "common": {
+                "role": "volume",
+                "name": "Speaker volume of TV",
+                "type": "number",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "audio.volumeHeadphone",
+            "type": "state",
+            "common": {
+                "role": "volume",
+                "name": "Headphone  volume of TV",
+                "type": "number",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "audio.volume",
+            "type": "state",
+            "common": {
+                "role": "volume.group",
+                "name": "Headphone or Speaker volume depending on what is currently or lastly used",
+                "type": "number",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },   
+        {
+            "_id": "audio.muteSpeaker",
+            "type": "state",
+            "common": {
+                "role": "media.mute",
+                "name": "Mute of Speaker",
+                "type": "boolean",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },   
+        {
+            "_id": "audio.muteHeadphone",
+            "type": "state",
+            "common": {
+                "role": "media.mute",
+                "name": "Mute of Headphhone",
+                "type": "boolean",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "audio.mute",
+            "type": "state",
+            "common": {
+                "role": "media.mute",
+                "name": "Mute of Headphone or Speaker depending on what is currently or lastly used.",
+                "type": "boolean",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },   
+        
+        {
+            "_id": "audio.target",
+            "type": "state",
+            "common": {
+                "role": "state",
+                "name": "Typically 'headphone' or 'speaker'",
+                "type": "string",
+                "read": true,
+                "write": false
             },
             "native": {}
         },
