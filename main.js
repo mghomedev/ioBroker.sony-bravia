@@ -18,6 +18,9 @@ let device;
 // name has to be set and has to be equal to adapters folder name and main file name excluding extension
 // adapter will be restarted automatically every time as the configuration changed, e.g system.adapter.template.0
 let adapter;
+
+let powerStatus = null;
+
 function startAdapter(options) {
     options = options || {};
 
@@ -38,14 +41,17 @@ function startAdapter(options) {
 }
 
 function handleStateCommand(id, state) {
-    adapter.log.debug("handleStateCommand called for id="+id);
+    adapter.log.debug("handleStateCommand called for id=" + id);
 
     if (id.endsWith("info.triggerUpdateStatus")) {    
-        if (state.val!=null && state.val) {                
+        if (state.val != null && state.val) {
             setImmediate(() => {
                 checkStatus(); 
             });
         }
+        return;
+    } else if (id.endsWith("info.powerstatus")) {
+        return; // ignored
     }else if (id.endsWith("info.powerstatus")) {
         return;// ignored
     }
@@ -56,7 +62,10 @@ function handleStateCommand(id, state) {
 function setConnected(_isConnected) {
     if (isConnected !== _isConnected) {
         isConnected = _isConnected;
-        adapter.setState('info.connection', {val: isConnected, ack: true});
+        adapter.setState('info.connection', {
+            val: isConnected,
+            ack: true
+        });
     }
 }
 
@@ -66,19 +75,20 @@ function main() {
         device = new Controller(adapter.config.ip, '80', adapter.config.psk, 5000);
         // in this template all states changes inside the adapters namespace are subscribed
         adapter.subscribeStates('*');
+        powerStatus = "";
         checkStatus();
 
         let interval = 60000;
-        if (adapter.config.syncseconds!=null && Number(adapter.config.syncseconds)>=0) {
+        if (adapter.config.syncseconds != null && Number(adapter.config.syncseconds) >= 0) {
 
             interval = Number(adapter.config.syncseconds) * 1000;
         }
     
-        if (interval>0) {
-            adapter.log.debug("Starting refresh timer(interval="+interval+" milli-seconds)");    
+        if (interval > 0) {
+            adapter.log.debug("Starting refresh timer(interval=" + interval + " milli-seconds)");
             setInterval(checkStatus, interval);        
-        }else {
-            adapter.log.debug("Disabled refresh timer because interval="+interval);    
+        } else {
+            adapter.log.debug("Disabled refresh timer because interval=" + interval);
         }
 
     } else {
@@ -99,46 +109,62 @@ function checkStatus() {
             if (device != null && result.alive) {
                 adapter.log.debug("device.getPowerStatus()...");
                 device.getPowerStatus().then(response => {                            
-                    adapter.log.debug("device.getPowerStatus: response=" + response);
+                    adapter.log.debug("device.getPowerStatus: response=" + JSON.stringify(response));
+                    try {
                     if (response != null) {
                         if (response.status != null) {
                             adapter.log.debug("device.getPowerStatus: status=" + response.status);
+                                let powerStatusChanged = powerStatus != response.status;
+
+                                powerStatus = response.status;
                             adapter.setState('info.powerstatus', {
                                 val: response.status,
                                 ack: true
                             });
                         } else {
+                                powerStatus = "errorstatus";
                             adapter.setState('info.powerstatus', {
                                 val: "errorstatus",
                                 ack: true
                             });
                         }
                         
-                        adapter.getState('info.triggerUpdateStatus', function(err, s) {
-                            if (s!=null && (s.val == null || s.val )) adapter.setState('info.triggerUpdateStatus', {val: false, ack: true}); 
+                            adapter.getState('info.triggerUpdateStatus', function (err, s) {
+                                if (s != null && (s.val == null || s.val)) adapter.setState('info.triggerUpdateStatus', {
+                                    val: false,
+                                    ack: true
+                                });
                         });
 
                     } else {
+                            powerStatus = "errornoresponse";
                         adapter.setState('info.powerstatus', {
                             val: "errornoresponse",
                             ack: true
                         });
                     }
+                    } catch (e) {
+                        adapter.log.error("device.getPowerStatus crash after response=" + response + ". e=" + e + " stack=" + e.stack);
+
+                    }
 
                 }, reject => {
                     adapter.log.debug("device.getPowerStatus failed ..." + reject);
+                    powerStatus = "errorcon";
                     adapter.setState('info.powerstatus', {
                         val: "errorcon",
                         ack: true
                     });
                 });
             } else {
+                powerStatus = "errorping";
                 adapter.setState('info.powerstatus', {
                     val: "errorping",
                     ack: true
                 });
             }
         } else {
+            powerStatus = "errorping";
             adapter.setState('info.powerstatus', {
                 val: "errorping",
                 ack: true
