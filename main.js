@@ -58,6 +58,23 @@ function handleStateCommand(id, state) {
             });
         }
         return;
+    } else if (id.endsWith("audio.volumeSpeaker") || id.endsWith("audio.volume") || id.endsWith("audio.volumeHeadphone")) {
+        if (state.val != null && !state.ack) {
+            let target = "";
+            if (id.endsWith("Speaker")) target="speaker";
+            else if (id.endsWith("Headphones")) target = "headphones";
+
+            device.setAudioVolumeInformation(target, state.val).then(
+                res => {
+                    setImmediate(() => {
+                        refreshInputAndVolumeInformation();
+                    });
+                }, rej => {
+                    adapter.log.debug("audio.volumeSpeaker failed " + rej);
+                });
+        }
+
+        return;
     }
     id = id.substring(id.lastIndexOf('.') + 1);
     device.send(id);

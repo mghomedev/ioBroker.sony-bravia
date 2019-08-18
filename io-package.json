@@ -241,7 +241,7 @@
                 "name": "Speaker volume of TV",
                 "type": "number",
                 "read": true,
-                "write": false
+                "write": true
             },
             "native": {}
         },
@@ -253,7 +253,7 @@
                 "name": "Headphone  volume of TV",
                 "type": "number",
                 "read": true,
-                "write": false
+                "write": true
             },
             "native": {}
         },
@@ -265,7 +265,7 @@
                 "name": "Headphone or Speaker volume depending on what is currently or lastly used",
                 "type": "number",
                 "read": true,
-                "write": false
+                "write": true
             },
             "native": {}
         },   
